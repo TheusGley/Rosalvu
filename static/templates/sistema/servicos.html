@@ -1,0 +1,41 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+
+{% block content %}
+
+    <section>
+        <br>
+        <div class="container">
+            <div>
+                <h3> Serviços Cadastrados </h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            
+                                <th scope="col"><strong>Nome</strong></th> </a>
+                                <th scope="col"><strong>Data de aniversario</strong></th>
+                                <th scope="col"><strong>Telefone</strong></th>
+                                <th scope="col"><strong>Handle</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for s in servicos %}
+                        <tr>
+                            <th scope="row">  <strong> <a href="#" class="nav-link" >   {{s.nome_servico}}</a></strong></th> 
+                            <td>{{s.colaborador}}</td>
+                            <td>{{s.status}}</td>
+                            <td>{{s.valor}}</td>
+                        </tr>
+                    {% endfor %}
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+{% endblock  %}

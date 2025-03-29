@@ -1,0 +1,152 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+{% block content %}
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<section class="pt-4">
+    <div class="container pt-4 ">
+        <div class="col">
+            <div class="row">
+               
+                <div class="card pt-4" style="width: 38rem;">
+                    <div class="card-header text-center">
+
+                   
+                        <strong> Vendas no mes de {{mes_atual}} </strong>
+                    </div> 
+                    <div style="display: block; box-sizing: border-box; "> 
+                        <canvas id="myChart"></canvas>
+
+                    </div>
+                </div>
+                <div class="card pt-4" style="width: 38rem;">
+                    <div class="card-header text-center">
+                        <strong> Vendas nos meses  </strong>
+                    </div> 
+                    <div style="display: block; box-sizing: border-box; "> 
+                        <canvas id="myChart2"></canvas>
+
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    
+</section>
+
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    const data = {
+        labels: [
+        {% for venda in vendas_mes_atual %}
+     '{{ venda.cliente }} | {{ venda.data|date:"d-m-Y" }}',
+
+        {% endfor %}
+        
+        ],
+        datasets: [{
+            label: 'Valor',
+            pointStyle: 'circle',
+            pointRadius: 10,
+            pointHoverRadius: 15,
+            data: [
+            {% for venda in vendas_mes_atual %}
+                {{ venda.valor }} ,
+            {% endfor %}
+            ],
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+        
+    new Chart(ctx, {
+        type: 'line',
+        data: data,
+        responsive: true,
+        options: {
+            scales: {
+                y: {
+                    min: 0,     // Define o valor mínimo do eixo Y
+                    max: {{total_vendas}},   // Define o valor máximo do eixo Y
+                    ticks: {
+                        stepSize: 1, // Exibe valores a cada 20 (0, 20, 40, 60...)
+                        callback: function(value) {
+                            return 'R$ ' + value; // Exibe valores formatados
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
+
+    const ctx1 = document.getElementById('myChart2').getContext('2d');
+    const data1 = {
+        labels: [
+        {%for v in vendas_mes%}
+            '{{v.mes}}',
+        {% endfor %}
+        
+        ],
+        datasets: [{
+            label: 'Valor',
+            pointStyle: 'circle',
+            pointRadius: 10,
+            pointHoverRadius: 15,
+            data: [
+
+         
+            {% for v in vendas_mes %}
+                {{ v.total|floatformat:"0" }},
+            {% endfor %}
+            
+            ],
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+        
+    new Chart(ctx1, {
+        type: 'line',
+        data: data1,
+        responsive: true,
+        options: {
+            scales: {
+                y: {
+                    min: 0,     // Define o valor mínimo do eixo Y
+                    max: {{total_vendas}},   // Define o valor máximo do eixo Y
+                    ticks: {
+                        stepSize: 2, // Exibe valores a cada 20 (0, 20, 40, 60...)
+                        callback: function(value) {
+                            return 'R$ ' + value; // Exibe valores formatados
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
+
+      </script>
+
+
+</body>
+</html>
+  
+
+{% endblock  %}

@@ -1,0 +1,49 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+
+{% block content %}
+
+    <section>
+        <br>
+        <div class="container">
+            <div>
+                <h3> Carinho de {{carrinho.cliente}} </h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            
+                                <th scope="col"><strong>Serviços</strong></th> </a>
+                                <th scope="col"><strong>Valor</strong></th>
+                                <th scope="col"><strong></strong></th>
+                                <th scope="col"><strong>Valor Total</strong></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in produto %}
+                        <tr>
+                            <td scope="row">  <strong> <a href="#" class="nav-link" >   {{c.servico.nome_servico}}</a></strong></td>
+                            <td>{{c.servico.valor}}</td>
+                    <td><a href=# class="text-danger"><i class="fa fa-trash"> </i></a> </td>
+
+                        </tr>
+                    {% endfor %}
+                    <td>&nbsp;</td>
+                    <td>{{carrinho.total}}</td>
+
+                    </tbody>
+                </table>
+
+                <a href="{% url "pedidos" %}" class="btn btn-primary" > Voltar </a>
+                <a href="{% url "carrinhoNew" carrinho.cliente %}" class="btn btn-warning" > Adicionar </a>
+                <a href="{% url "finalizar" carrinho.id %}" class="btn btn-success" > Finalizar Venda </a>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock  %}

@@ -1,0 +1,73 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+
+
+{% block content %}
+
+
+<section class="box features">
+    <br>
+    <div>
+
+        <div class="row">
+            <div class="col-4 col-6-medium col-12-small">
+            </div>
+
+
+            <div class="col-4 col-6-medium col-12-small">
+
+                    <!-- Feature -->
+                        <section class="box feature">
+                            <h3> Adicionando Clientes </h3>
+
+
+                            <form method="post" action="{% url 'cadastro' %}" >
+
+
+                                {% csrf_token %}
+
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Nome" name="nome" id="nome" aria-describedby="basic-addon2">
+                                    <span class="input-group-text" id="basic-addon2">Nome e sobrenome</span>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="date" class="form-control" name="data_nascimento" id="data_nascimento"  placeholder="Data de nascimento" />
+                                    <span class="input-group-text" id="basic-addon2">Data de nascimento</span>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="tel" class="form-control text-4" name="telefone" id="telefone" placeholder="Telefone" />
+                                    <span class="input-group-text" id="basic-addon2">Telefone</span>
+                                </div>
+
+
+                                <div class="input-group mb-3">
+                                    <button type="submit" class="button "> Adicionar </button> 
+                                
+                                </div>
+                                <div class="input-group mb-3">
+
+                                    <a herf="{% url "home" %}" class="button_danger "> Cancelar </a> 
+                                </div>
+
+                            </form>
+                        </section>
+
+            </div>
+    
+            <div class="col-4 col-6-medium col-12-small">
+            </div>
+    </div>
+
+  
+</section>
+
+{% endblock  %}
+
+
+
+
+

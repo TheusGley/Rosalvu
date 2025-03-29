@@ -1,0 +1,58 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+
+{% block content %}
+
+                    
+<section class="box features">
+    <br>
+    <div>
+
+        <div class="row">
+            <div class="col-4 col-6-medium col-12-small">
+            </div>
+
+
+            <div class="col-4 col-6-medium col-12-small">
+
+                    <!-- Feature -->
+                        <section class="box feature">
+                            <h3> Adicionando Serviços </h3>
+
+
+                            <form method="post" action="{% url 'addCarrinho' %}" >
+
+
+                                {% csrf_token %}
+                                <select id="servico" name="servico" > 
+                                    {% for s  in servicos  %}
+                                    
+                                    
+                                    <option value="{{s.nome_servico}}" >{{s.nome_servico}}</option>
+                                    
+                                    {% endfor %}
+                                </select>
+                    
+                                <select id="cliente" name="cliente" > 
+                                    <option value="{{nome_cliente}}" >{{nome_cliente}}</option>
+                                </select>
+
+
+                                <button type="submit" class="button "> Adicionar </button> 
+                            </form>
+                        </section>
+
+            </div>
+    
+            <div class="col-4 col-6-medium col-12-small">
+            </div>
+    </div>
+
+  
+</section>
+
+{% endblock  %}

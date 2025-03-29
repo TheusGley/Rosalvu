@@ -1,0 +1,145 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+{%load static%}
+
+
+{% block content %}
+        <body>
+
+            <section class="container pt-4">
+                
+             
+                    
+                    <section class="box features">
+                        <br>
+                        <h2 class="major"><span>Sistema </span></h2>
+                        <div>
+                            <div class="row">
+                                <div class="col-4 col-6-medium col-12-small">
+
+                                    <!-- Feature -->
+                                        <section class="box feature">
+                                            <h3> Clientes </h3>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        
+                                                        <th scope="col"><strong>Nome</strong></th> </a>
+                                                            <th scope="col"><strong>Data_aniversario</strong></th>
+                                                            <th scope="col"><strong>Telefone</strong></th>
+                                                            <th scope="col"><strong>Handle</strong></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for c in clientes %}
+                                                    <tr>
+                                                        <th scope="row">  <strong> <a href="#" class="nav-link" >   {{c.nome}}</a></strong></th> 
+                                                        <td>{{c.data_nasc}}</td>
+                                                        <td>{{c.telefone}}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                
+                                                </tbody>
+                                            </table>
+                                        </section>
+
+                                </div>
+                                <div class="col-3 col-6-medium col-12-small">
+
+                                    <!-- Feature -->
+                                        <section class="box feature">
+                                            {% comment %} <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+                                            <h3><a href="#">Another Subheading</a></h3>
+                                            <p>
+                                                Phasellus quam turpis, feugiat sit amet ornare in, a hendrerit in
+                                                lectus dolore. Praesent semper mod quis eget sed etiam eu ante risus.
+                                            </p> {% endcomment %}
+                                        </section>
+
+                                </div> 
+                                <div class="col-4 col-6-medium col-12-small">
+
+                                    <!-- Feature -->
+                                        <section class="box feature">
+                                            <h3> Serviços </h3>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        
+                                                        <th scope="col"><strong>Nome</strong></th> </a>
+                                                            <th scope="col"><strong>Responsavel</strong></th>
+                                                            <th scope="col"><strong>Status</strong></th>
+                                                            <th scope="col"><strong>Valor</strong></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for s in servicos %}
+                                                    <tr>
+                                                        <th scope="row">  <strong> <a href="#" class="nav-link" >{{s.nome_servico}}</a></strong></th> 
+                                                        <td>{{s.colaborador}}</td>
+                                                        <td>{{s.status}}</td>
+                                                        <td>{{s.valor}}</td>
+
+                                                    </tr>
+                                                {% endfor %}
+                                                
+                                                </tbody>
+                                            </table>
+                                        </section>
+
+                                </div>
+                                {% comment %} <div class="col-3 col-6-medium col-12-small">
+
+                                    <!-- Feature -->
+                                        <section class="box feature">
+                                            <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
+                                            <h3><a href="#">And One More</a></h3>
+                                            <p>
+                                                Phasellus quam turpis, feugiat sit amet ornare in, a hendrerit in
+                                                lectus dolore. Praesent semper mod quis eget sed etiam eu ante risus.
+                                            </p>
+                                        </section>
+
+                                </div> {% endcomment %}
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><button  type="button"   class="button large"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Atender</button></li>
+                                        <li><a href="#" class="button alt large">Think About It</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+            </section>
+
+        
+              <!-- Modal -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Atender Cliente</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Será um novo cliente?
+                    </div>
+                    <div class="modal-footer">
+                      <a href={%url 'clientes' %} class="btn btn-success" >Já tem cadastro</a>
+                      <a href={%url 'cadastro' %}  type="button" class="btn btn-danger">Ainda Não tem Cadastro</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+        
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    </body>
+</html>
+{% endblock %}

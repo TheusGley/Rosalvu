@@ -1,0 +1,67 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+
+{% load static %}
+
+{%block content %}
+<main class="container">
+
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+  <script src="{%static 'js/core/locales/pt-br.global.js'%}"></script>
+    <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <div id="calendar-container">
+        <div id="calendar"></div>
+    </div>
+    <style>
+         #calendar {
+            min-width: 50vw;
+            min-height: 10vw;
+            margin: 5px; 
+        } 
+
+     
+      
+        
+    </style>
+    
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale:'pt-br',
+            contentHeight: 'auto', 
+            selectable: true,
+            dateClick: function(info) {
+               var day = moment(info.dateStr).format('YYYY-MM-DD');
+               console.log(day)
+                {% comment %} url = "{% url 'agendamentosDia' 0 %}".replace('0', day); {% endcomment %}
+                window.location.href = url;  
+
+            },
+            events: [
+            {% for c in clientes %}
+            {
+                title: "{{c.nome}}",
+                start: "2025-{{ c.data_nasc|date:'m-d' }}",
+                color:"blue"
+            },
+            {% endfor %}
+            
+        ],
+        });
+        calendar.render();
+
+     
+    });
+</script>
+
+{%endblock%}

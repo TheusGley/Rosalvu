@@ -1,0 +1,43 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+
+{% block content %}
+
+
+    <section>
+        <br>
+        <div class="container">
+            <div>
+                <h3> {{cliente.nome}} </h3>
+
+                <form method="post" action="{% url 'clienteEdit' cliente.id %}" >
+
+
+                    {% csrf_token %}
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="{{cliente.nome}}"  name="nome" id="nome" aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2">Nome e sobrenome</span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control" name="data_nasc" id="data_nasc"  value="{{cliente.data_nasc|date:"Y-m-d"}}" />
+                        <span class="input-group-text" id="basic-addon2">Data de nascimento</span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="tel" class="form-control text-4" name="telefone" id="telefone" value="{{cliente.telefone}}" />
+                        <span class="input-group-text" id="basic-addon2">Telefone</span>
+                    </div>
+                    <button type="submit" class="button "> Editar </button> 
+                </form>
+                
+                <a href="{% url "clientes"  %} "  class="btn btn-primary"> Voltar</a>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock  %}

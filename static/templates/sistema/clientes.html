@@ -1,0 +1,42 @@
+{% if mobile == 'true'  %}
+{% include  'sistema/headerCel.html'%}
+{% else %}
+{% include 'sistema/header.html'%}
+{% endif %}
+
+{% block content %}
+
+
+    <section>
+        <br>
+        <div class="container">
+            <div>
+                <h3> Clientes Cadastrados </h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            
+                                <th scope="col"><strong>Nome</strong></th> </a>
+                                <th scope="col"><strong>Data de aniversario</strong></th>
+                                <th scope="col"><strong>Telefone</strong></th>
+                                <th scope="col"><strong></strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in clientes %}
+                        <tr>
+                            <th scope="row">  <strong> <a href="{% url "cliente" c.id %}" class="nav-link" >   {{c.nome}}</a></strong></th> 
+                            <td>{{c.data_nasc}}</td>
+                            <td><a href="https://wa.me/{{c.telefone}}" > {{c.telefone}} </a></td>
+                            <td><a href="{% url 'carrinhoNew' c.nome %}" class="btn btn-success bi bi-basket2"></a></td>
+                        </tr>
+                    {% endfor %}
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock  %}

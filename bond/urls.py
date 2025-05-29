@@ -3,8 +3,9 @@ from django.urls import path, include
 # from bond  import urls as bond_urls 
 from django.conf.urls.static import static
 from django.conf import settings
-
 from .views import *
+
+
 
 urlpatterns = [
     path('', homeView, name="home"),
@@ -23,6 +24,12 @@ urlpatterns = [
     path('addCarrinho', addCarrinnhoView, name="addCarrinho"),
     path('finalizar/<id_carrinho>', finalizarView, name="finalizar"),
     
+    
+    path('teste/',testeView, name="teste"),
+    
+    
+    
+        path('mensagem/', mensagem, name='mensagem'),
     
     
     

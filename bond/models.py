@@ -6,6 +6,8 @@ class Cliente (models.Model):
     data_nasc = models.DateField(auto_now=False,null=False)
     telefone = models.CharField(max_length=15, blank=True, null=True)
     ultima_entrada = models.DateField(auto_now=False,null=True)
+    notas = models.CharField(max_length=100,blank=True, null=True)
+    
 
     
     def __str__(self):

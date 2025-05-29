@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interação de Imagem com Alpine.js e TailwindCSS</title>
+  <!-- TailwindCSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+<!-- Componente Alpine que controla a imagem atual -->
+<div x-data="{ currentImg: '{% static 'images/pic01.jpg' %}' }">
+
+  <!-- Grid de imagens interativas -->
+  <div class="grid grid-cols-2 gap-6 p-4 bg-blue-700 rounded-md">
+    <!-- Imagem 1 -->
+    <div @mouseover="currentImg = '{% static 'images/pic01.jpg' %}'">
+      <img class="rounded-md aspect-square object-cover w-10 origin-center transition-transform duration-500 hover:rotate-45" src="{% static 'images/pic01.jpg' %}" alt="Imagem 1" />
+    </div>
+    <!-- Imagem 2 -->
+    <div @mouseover="currentImg = '{% static 'images/pic02.jpg' %}'">
+      <img class="rounded-md aspect-square object-cover  w-10 origin-center transition-transform duration-500 hover:rotate-45" src="{% static 'images/pic02.jpg' %}" alt="Imagem 2" />
+    </div>
+    <!-- Imagem 3 -->
+    <div @mouseover="currentImg = '{% static 'images/pic03.jpg' %}'">
+      <img class="rounded-md aspect-square object-cover  w-10 origin-center transition-transform duration-500 hover:rotate-45" src="{% static 'images/pic03.jpg' %}" alt="Imagem 3" />
+    </div>
+    <!-- Imagem 4 -->
+    <div @mouseover="currentImg = '{% static 'images/pic04.jpg' %}'">
+      <img class="rounded-md aspect-square object-cover  w-10 origin-center transition-transform duration-500 hover:rotate-45" src="{% static 'images/pic04.jpg' %}" alt="Imagem 4" />
+    </div>
+  </div>
+
+  <!-- Container maior que exibe a imagem atual -->
+  <div class="bg-gray-700 flex flex-col items-center justify-center mt-10 p-4 rounded-md">
+    <div class="w-full">
+      <!-- A imagem utiliza o binding do Alpine.js (x-bind ou :src) -->
+      <img class="rounded-md w-full h-80 object-cover" :src="currentImg" alt="Imagem Principal" />
+    </div>
+    <p class="font-mono text-white text-center text-sm mt-4">
+      keeps telling me there is no way to make it work, that ...  
+      Matheus Gley Cunha Figueiredo  
+      Today I spent most of the day researching ways to ...
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>

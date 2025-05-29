@@ -28,7 +28,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bond',
-]
+    ]
+
+DJANGO_COMPONENTS = {
+    "components_dir": "static/components",  # padrão é "components"
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

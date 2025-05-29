@@ -4,9 +4,22 @@ import datetime
 from django.db.models import Count, Sum
 from .useraccess import *
 from django.db.models.functions import TruncMonth
+from django.http import HttpResponse
+
+
 def homeView(request):
     
-    return render(request,"site\index.html") 
+    
+    return render(request,"site/index.html") 
+
+def testeView(request, ):
+    
+
+    return render(request,"sistema/login.html",) 
+
+
+def mensagem(request):
+    return render(request, 'site/header.html')
 
 def homeSystemView(request):
     
@@ -24,7 +37,7 @@ def homeSystemView(request):
                 'mobile':mobile,
                 'servicos':servicos,
                }
-        return  render(request,"sistema\homeCel.html", context)  
+        return  render(request,"sistema/homeCel.html", context)  
     else:
         clientes = Cliente.objects.all()
         servicos = Servico.objects.all()
@@ -34,7 +47,7 @@ def homeSystemView(request):
                 'servicos':servicos,
                 'active':active}
         
-        return render(request,"sistema\home.html", context) 
+        return render(request,"sistema/home.html", context) 
     
 
 
@@ -52,7 +65,7 @@ def calendarioView(request):
                 'mobile':mobile,
                'active':active
                }
-        return render(request,"sistema\calendario.html", context) 
+        return render(request,"sistema/calendario.html", context) 
     
     else:
         clientes = Cliente.objects.all()
@@ -61,7 +74,7 @@ def calendarioView(request):
                'active':active
                }
     
-    return render(request,"sistema\calendario.html", context) 
+    return render(request,"sistema/calendario.html", context) 
 
 
 def clientesView(request):
@@ -77,7 +90,7 @@ def clientesView(request):
                 'active':active
                 }
         
-        return render(request,"sistema\clientes.html", context) 
+        return render(request,"sistema/clientes.html", context) 
     else:
         
     
@@ -89,7 +102,7 @@ def clientesView(request):
                 'active':active
                 }
         
-        return render(request,"sistema\clientes.html", context) 
+        return render(request,"sistema/clientes.html", context) 
 
 def servicosView(request):
     
@@ -104,7 +117,7 @@ def servicosView(request):
                'active':active
                }
     
-        return render(request,"sistema\servicos.html", context) 
+        return render(request,"sistema/servicos.html", context) 
     
     else:
     
@@ -116,7 +129,7 @@ def servicosView(request):
                 'active':active
                 }
         
-        return render(request,"sistema\servicos.html", context) 
+        return render(request,"sistema/servicos.html", context) 
 
 
 
@@ -134,7 +147,7 @@ def atividadesView(request):
                 'active':active
                 }
         
-        return render(request,"sistema\servicos.html", context) 
+        return render(request,"sistema/servicos.html", context) 
         
     else:
     
@@ -146,7 +159,7 @@ def atividadesView(request):
                 'active':active
                 }
         
-    return render(request,"sistema\servicos.html", context) 
+    return render(request,"sistema/servicos.html", context) 
 
 
 
@@ -341,7 +354,7 @@ def cadastroCliente(request):
         'cliente' : cliente,
     }
     print("aqui")
-    return render (request , 'sistema\cadastro.html', context)
+    return render (request , 'sistema/cadastro.html', context)
 
 
 
